@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app">
+        {{message}}
+        <div v-html="message"></div>
+        <a :href="href01">超链接</a>
+        <br/>
+        {{ number + 1 }} 
+        <br/>
+        {{ ok ? 'YES' : 'NO' }}
+        <br/>
+        {{ message.split('').reverse().join('') }}
+        <br/>
+
+        <div :id="'list-' + id">张三</div>
+
+        <a :[attributename]="url">翠花</a>
+
+    </div>
+
+    <script>
+        const App = {
+            data() {
+                return {
+                    id:2,
+                    attributename:"id",
+                    url:"http://baidu.com",
+                    number:5,
+                    ok:false,
+                    message: "hello <span style='color:red'>vue</span> !!",
+                    href01:"http://qq.com",
+                    
+                }
+            }
+        }
+        Vue.createApp(App).mount('#app')
+    </script>
+
+</body>
+
+</html>

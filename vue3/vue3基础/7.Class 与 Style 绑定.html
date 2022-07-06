@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <div :class="{ active: isActive , style01:style01Active }">张三</div>
+        <button @click="style01Active = !style01Active">clickme</button>
+
+        <hr>
+        <div :class="className">翠花</div>
+
+        <hr>
+
+        <div :style="{ color: activeColor, fontSize: fontSize  }">李四</div>
+
+        <hr/>
+
+        <div :style="style">王五</div>
+        <input type="text" v-model="style">
+    </div>
+
+    <script>
+        const App = {
+            data() {
+                return {
+                    isActive:true,
+                    style01Active:false,
+                    className:"style01",
+                    activeColor:"orange",
+                    fontSize:"25px",
+                    style:"font-size:30px;color:green",
+                }
+            }
+        }
+        Vue.createApp(App).mount('#app')
+    </script>
+
+    <style>
+        .active{
+            color: red;
+        }
+        .style01{
+            font-size: 50px;
+        }
+    </style>
+
+</body>
+
+</html>

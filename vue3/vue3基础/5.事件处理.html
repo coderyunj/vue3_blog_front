@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <button @click.middle="add(1,2,$event)">Add 1</button>
+        <button @click="add(2,5,$event)">Add 2</button>
+        <p>The button above has been clicked {{ counter }} times.</p>
+
+        <input @keyup.enter.exact="submit" @keyup.alt.enter="clear" v-model="inputVal"/>
+        <div>{{inputVal}}</div>
+
+    </div>
+
+    <script>
+        const App = {
+            data() {
+                return {
+                    counter:1,
+                    inputVal:""
+                }
+            },
+            methods:{
+                add(val,val2,event){
+                    console.log(event);
+                    this.counter += val * val2 ;
+                },
+                submit(){
+                    console.log("onsubmit");
+                },
+                clear(){
+                    this.inputVal = ""
+                }
+            }
+        }
+        Vue.createApp(App).mount('#app')
+    </script>
+
+</body>
+
+</html>
