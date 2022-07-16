@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <div v-for="(message,index) in messages">
+            <div>标题:{{message.title}} <button @click="deleteMessage(message.id)">删除</button> </div>
+            <div>内容:{{message.content}}</div>
+            <hr>
+        </div>
+
+        <div>
+            <input type="text" v-model="title">
+        </div>
+        <div>
+            <textarea name="" id="" cols="30" rows="10" v-model="content"></textarea>
+        </div>
+        <div><button @click="submit">提交</button></div>
+
+    </div>
+
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    messages: [],
+                    title: "",
+                    content: "",
+                }
+            },
+            created() {
+                this.loadMessage();
+            },
+            methods: {
+                loadMessage() {
+                    var that = this
+                    axios.get('/message/list')
+                        .then(function (response) {
+                            console.log(response);
+                            that.messages = response.data;
+                        });
+                },
+                deleteMessage(id) {
+                    var that = this
+                    axios.delete(`/message/delete?id=${id}`)
+                        .then(function (response) {
+                            that.loadMessage()
+                        });
+                },
+                submit() {
+                    var that = this
+                    axios.post('/message/add', {
+                        title: this.title,
+                        content: this.content
+                    })
+                        .then(function (response) {
+                            console.log(response);
+                            that.loadMessage()
+                        });
+                }
+            }
+        }).mount("#app")
+    </script>
+
+</body>
+
+</html>
