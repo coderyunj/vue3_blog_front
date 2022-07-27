@@ -1,0 +1,727 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+/* cyrillic-ext */
+/* cyrillic */
+/* greek-ext */
+/* greek */
+/* vietnamese */
+/* latin-ext */
+/* latin */
+/* cyrillic-ext */
+/* cyrillic */
+/* greek-ext */
+/* greek */
+/* vietnamese */
+/* latin-ext */
+/* latin */
+/* cyrillic-ext */
+/* cyrillic */
+/* greek-ext */
+/* greek */
+/* vietnamese */
+/* latin-ext */
+/* latin */
+/* cyrillic-ext */
+/* cyrillic */
+/* greek-ext */
+/* greek */
+/* vietnamese */
+/* latin-ext */
+/* latin */
+@font-face {
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 600;
+    src: local('Source Sans Pro SemiBold'), local('SourceSansPro-SemiBold'), url('file:///C://Users//Administrator//AppData//Roaming//Typora/themes/vue/6xKydSBYKcSV-LCoeQqfX1RYOo3i54rwlxdu.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}@import '';
+
+:root {
+    --side-bar-bg-color: #fff;
+    --control-text-color: #777;
+    --font-sans-serif: 'Ubuntu', 'Source Sans Pro', sans-serif !important;
+    --font-monospace: 'Fira Code', 'Roboto Mono', monospace !important;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-sans-serif);
+    color: #34495e;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6rem;
+    letter-spacing: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+#write {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 20px 30px 100px;
+}
+
+#write p {
+    line-height: 1.6rem;
+    word-spacing: .05rem;
+}
+
+#write ol li {
+    padding-left: 0.5rem;
+}
+
+#write > ul:first-child,
+#write > ol:first-child {
+    margin-top: 30px;
+}
+
+body > *:first-child {
+    margin-top: 0 !important;
+}
+
+body > *:last-child {
+    margin-bottom: 0 !important;
+}
+
+a {
+    color: #42b983;
+    font-weight: 600;
+    padding: 0 2px;
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+
+h1 tt,
+h1 code {
+    font-size: inherit !important;
+}
+
+h2 tt,
+h2 code {
+    font-size: inherit !important;
+}
+
+h3 tt,
+h3 code {
+    font-size: inherit !important;
+}
+
+h4 tt,
+h4 code {
+    font-size: inherit !important;
+}
+
+h5 tt,
+h5 code {
+    font-size: inherit !important;
+}
+
+h6 tt,
+h6 code {
+    font-size: inherit !important;
+}
+
+h2 a,
+h3 a {
+    color: #34495e;
+}
+
+h1 {
+    padding-bottom: .4rem;
+    font-size: 2.2rem;
+    line-height: 1.3;
+}
+
+h2 {
+    font-size: 1.75rem;
+    line-height: 1.225;
+    margin: 35px 0 15px;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid #ddd;
+}
+
+h3 {
+    font-size: 1.4rem;
+    line-height: 1.43;
+    margin: 20px 0 7px;
+}
+
+h4 {
+    font-size: 1.2rem;
+}
+
+h5 {
+    font-size: 1rem;
+}
+
+h6 {
+    font-size: 1rem;
+    color: #777;
+}
+
+p,
+blockquote,
+ul,
+ol,
+dl,
+table {
+    margin: 0.8em 0;
+}
+
+li > ol,
+li > ul {
+    margin: 0 0;
+}
+
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+body > h2:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body > h1:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body > h3:first-child,
+body > h4:first-child,
+body > h5:first-child,
+body > h6:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+a:first-child h1,
+a:first-child h2,
+a:first-child h3,
+a:first-child h4,
+a:first-child h5,
+a:first-child h6 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+h1 p,
+h2 p,
+h3 p,
+h4 p,
+h5 p,
+h6 p {
+    margin-top: 0;
+}
+
+li p.first {
+    display: inline-block;
+}
+
+ul,
+ol {
+    padding-left: 30px;
+}
+
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+
+blockquote {
+    border-left: 4px solid #42b983;
+    padding: 10px 15px;
+    color: #777;
+    background-color: rgba(66, 185, 131, .1);
+}
+
+table {
+    padding: 0;
+    word-break: initial;
+}
+
+table tr {
+    border-top: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+
+table tr:nth-child(2n),
+thead {
+    background-color: #fafafa;
+}
+
+table tr th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    text-align: left;
+    margin: 0;
+    padding: 6px 13px;
+}
+
+table tr td {
+    border: 1px solid #dfe2e5;
+    text-align: left;
+    margin: 0;
+    padding: 6px 13px;
+}
+
+table tr th:first-child,
+table tr td:first-child {
+    margin-top: 0;
+}
+
+table tr th:last-child,
+table tr td:last-child {
+    margin-bottom: 0;
+}
+
+#write strong {
+    padding: 0 1px;
+}
+
+#write em {
+    padding: 0 5px 0 2px;
+}
+
+#write table thead th {
+    background-color: #f2f2f2;
+}
+
+#write .CodeMirror-gutters {
+    border-right: none;
+}
+
+#write .md-fences {
+    border: 1px solid #F4F4F4;
+    -webkit-font-smoothing: initial;
+    margin: 0.8rem 0 !important;
+    padding: 0.3rem 0 !important;
+    line-height: 1.43rem;
+    background-color: #F8F8F8 !important;
+    border-radius: 2px;
+    font-family: var(--font-monospace);
+    font-size: 0.85rem;
+    word-wrap: normal;
+}
+
+#write .CodeMirror-wrap .CodeMirror-code pre {
+    padding-left: 12px;
+}
+
+#write code, tt {
+    padding: 2px 4px;
+    border-radius: 2px;
+    font-family: var(--font-monospace);
+    font-size: 0.92rem;
+    color: #e96900;
+    background-color: #f8f8f8;
+}
+
+tt {
+    margin: 0 2px;
+}
+
+#write .md-footnote {
+    background-color: #f8f8f8;
+    color: #e96900;
+}
+
+/* heighlight. */
+#write mark {
+    background-color: #EBFFEB;
+    border-radius: 2px;
+    padding: 2px 4px;
+    margin: 0 2px;
+    color: #222;
+    font-weight: 500;
+}
+
+#write del {
+    padding: 1px 2px;
+}
+
+.cm-s-inner .cm-link,
+.cm-s-inner.cm-link {
+    color: #22a2c9;
+}
+
+.cm-s-inner .cm-string {
+    color: #22a2c9;
+}
+
+.md-task-list-item > input {
+    margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+    background-color: #f8f8f8;
+}
+
+#write pre.md-meta-block {
+    padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block > .code-tooltip {
+    bottom: .375rem;
+}
+
+#write > h3.md-focus:before {
+    left: -1.5625rem;
+    top: .375rem;
+}
+
+#write > h4.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+#write > h5.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+#write > h6.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+.md-image > .md-meta {
+    border-radius: 3px;
+    font-family: var(--font-monospace);
+    padding: 2px 0 0 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: inherit;
+}
+
+.md-toc {
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+#md-notification:before {
+    top: 10px;
+}
+
+/** focus mode */
+
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header,
+.context-menu,
+.megamenu-content,
+footer {
+    font-family: var(--font-sans-serif);
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state {
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+.html-for-mac .context-menu {
+    --item-hover-bg-color: #E6F0FE;
+}
+
+
+
+</style><title>2.文件和目录常用命令</title>
+</head>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><h1 id='文件和目录常用命令'><span>文件和目录常用命令</span></h1><h2 id='目标'><span>目标</span></h2><ul><li><p><span>查看目录内容</span></p><ul><li><code>ls</code></li></ul></li><li><p><span>切换目录</span></p><ul><li><code>cd</code></li></ul></li><li><p><span>创建和删除操作</span></p><ul><li><code>touch</code></li><li><code>rm</code></li><li><code>mkdir</code></li></ul></li><li><p><span>拷贝和移动文件</span></p><ul><li><code>cp</code></li><li><code>mv</code></li></ul></li><li><p><span>查看文件内容</span></p><ul><li><code>cat</code></li><li><code>more</code></li><li><code>grep</code></li></ul></li><li><p><span>其他</span></p><ul><li><code>echo</code></li><li><span>重定向 </span><code>&gt;</code><span> 和 </span><code>&gt;&gt;</code></li><li><span>管道 </span><code>|</code></li></ul></li></ul><h2 id='01-查看目录内容'><span>01. 查看目录内容</span></h2><h3 id='11-终端实用技巧'><span>1.1 终端实用技巧 </span></h3><h4 id='1-自动补全'><span>1&gt; 自动补全</span></h4><ul><li><p><span>在敲出 </span><code>文件</code><span>／</span><code>目录</code><span>／</span><code>命令</code><span> 的前几个字母之后，按下 </span><code>tab</code><span> 键</span></p><ul><li><span>如果输入的没有歧义，系统会自动补全</span></li><li><span>如果还存在其他 </span><code>文件</code><span>／</span><code>目录</code><span>／</span><code>命令</code><span>，再按一下 </span><code>tab</code><span> 键，系统会提示可能存在的命令</span></li></ul></li></ul><h4 id='2-曾经使用过的命令'><span>2&gt; 曾经使用过的命令</span></h4><ul><li><span>按 </span><code>上</code><span>／</span><code>下</code><span> 光标键可以在曾经使用过的命令之间来回切换</span></li><li><span>如果想要退出选择，并且不想执行当前选中的命令，可以按 </span><code>ctrl + c</code></li></ul><h3 id='12-ls-命令说明'><span>1.2 </span><code>ls</code><span> 命令说明</span></h3><ul><li><code>ls</code><span> 是英文单词 </span><strong><span>list</span></strong><span> 的简写，其功能为列出目录的内容，是用户最常用的命令之一，类似于 </span><strong><span>DOS</span></strong><span> 下的 </span><code>dir</code><span> 命令</span></li></ul><h4 id='linux-下文件和目录的特点'><span>Linux 下文件和目录的特点</span></h4><ul><li><span>Linux </span><strong><span>文件</span></strong><span> 或者 </span><strong><span>目录</span></strong><span> 名称最长可以有 </span><code>256</code><span> 个字符</span></li><li><span>以 </span><code>.</code><span> 开头的文件为隐藏文件，需要用 -a 参数才能显示</span></li><li><strong><span>.</span></strong><span> 代表当前目录</span></li><li><strong><span>..</span></strong><span> 代表上一级目录</span></li></ul><h3 id='13-ls-常用选项'><span>1.3 ls 常用选项</span></h3><figure><table><thead><tr><th><span>参数</span></th><th><span>含义</span></th></tr></thead><tbody><tr><td><span>-a</span></td><td><span>显示指定目录下所有子目录与文件，包括隐藏文件</span></td></tr><tr><td><span>-l</span></td><td><span>以列表方式显示文件的详细信息</span></td></tr><tr><td><span>-h</span></td><td><span>配合 -l 以人性化的方式显示文件大小</span></td></tr></tbody></table></figure><h4 id='计算机中文件大小的表示方式科普）'><span>计算机中文件大小的表示方式（科普）</span></h4><figure><table><thead><tr><th><span>单位</span></th><th><span>英文</span></th><th><span>含义</span></th></tr></thead><tbody><tr><td><span>字节</span></td><td><span>B（Byte）</span></td><td><span>在计算机中作为一个数字单元，一般为 8 位二进制数</span></td></tr><tr><td><span>千</span></td><td><span>K（Kibibyte）</span></td><td><span>1 KB = 1024 B，千字节 （1024 = 2 ** 10）</span></td></tr><tr><td><span>兆</span></td><td><span>M（Mebibyte）</span></td><td><span>1 MB = 1024 KB，百万字节</span></td></tr><tr><td><span>千兆</span></td><td><span>G（Gigabyte）</span></td><td><span>1 GB = 1024 MB，十亿字节，千兆字节</span></td></tr><tr><td><span>太</span></td><td><span>T（Terabyte）</span></td><td><span>1 TB = 1024 GB，万亿字节，太字节</span></td></tr><tr><td><span>拍</span></td><td><span>P（Petabyte）</span></td><td><span>1 PB = 1024 TB，千万亿字节，拍字节</span></td></tr><tr><td><span>艾</span></td><td><span>E（Exabyte）</span></td><td><span>1 EB = 1024 PB，百亿亿字节，艾字节</span></td></tr><tr><td><span>泽</span></td><td><span>Z（Zettabyte）</span></td><td><span>1 ZB = 1024 EB，十万亿亿字节，泽字节</span></td></tr><tr><td><span>尧</span></td><td><span>Y（Yottabyte）</span></td><td><span>1 YB = 1024 ZB，一亿亿亿字节，尧字节</span></td></tr></tbody></table></figure><h3 id='14-ls-通配符的使用'><span>1.4 ls 通配符的使用</span></h3><figure><table><thead><tr><th><span>通配符</span></th><th><span>含义</span></th></tr></thead><tbody><tr><td><span>*</span></td><td><span>代表任意个数个字符</span></td></tr><tr><td><span>?</span></td><td><span>代表任意一个字符，至少 1 个</span></td></tr><tr><td><span>[]</span></td><td><span>表示可以匹配字符组中的任一一个</span></td></tr><tr><td><span>[abc]</span></td><td><span>匹配 a、b、c 中的任意一个</span></td></tr><tr><td><span>[a-f]</span></td><td><span>匹配从 a 到 f 范围内的的任意一个字符</span></td></tr></tbody></table></figure><h2 id='02-切换目录'><span>02. 切换目录</span></h2><h3 id='21-cd'><span>2.1 </span><code>cd</code></h3><ul><li><code>cd</code><span> 是英文单词 </span><strong><span>change directory</span></strong><span> 的简写，其功能为更改当前的工作目录，也是用户最常用的命令之一</span></li></ul><blockquote><p><span>注意：Linux 所有的 </span><strong><span>目录</span></strong><span> 和 </span><strong><span>文件名</span></strong><span> 都是大小写敏感的</span></p></blockquote><figure><table><thead><tr><th><span>命令</span></th><th><span>含义</span></th></tr></thead><tbody><tr><td><span>cd</span></td><td><span>切换到当前用户的主目录(/home/用户目录)</span></td></tr><tr><td><span>cd ~</span></td><td><span>切换到当前用户的主目录(/home/用户目录)</span></td></tr><tr><td><span>cd .</span></td><td><span>保持在当前目录不变</span></td></tr><tr><td><span>cd ..</span></td><td><span>切换到上级目录</span></td></tr><tr><td><span>cd -</span></td><td><span>可以在最近两次工作目录之间来回切换</span></td></tr></tbody></table></figure><h3 id='22-相对路径和绝对路径'><span>2.2 相对路径和绝对路径</span></h3><ul><li><strong><span>相对路径</span></strong><span> 在输入路径时，最前面不是 </span><strong><span>/</span></strong><span> 或者 </span><strong><span>~</span></strong><span>，表示相对 </span><strong><span>当前目录</span></strong><span> 所在的目录位置</span></li><li><strong><span>绝对路径</span></strong><span> 在输入路径时，最前面是 </span><strong><span>/</span></strong><span> 或者 </span><strong><span>~</span></strong><span>，表示从 </span><strong><span>根目录/家目录</span></strong><span> 开始的具体目录位置</span></li></ul><h2 id='03-创建和删除操作'><span>03. 创建和删除操作</span></h2><h3 id='31-touch'><span>3.1 </span><code>touch</code></h3><ul><li><p><span>创建文件或修改文件时间</span></p><ul><li><span>如果文件 </span><strong><span>不存在</span></strong><span>，可以创建一个空白文件</span></li><li><span>如果文件 </span><strong><span>已经存在</span></strong><span>，可以修改文件的末次修改日期</span></li></ul></li></ul><h3 id='32-mkdir'><span>3.2 </span><code>mkdir</code></h3><ul><li><span>创建一个新的目录</span></li></ul><figure><table><thead><tr><th><span>选项</span></th><th><span>含义</span></th></tr></thead><tbody><tr><td><span>-p</span></td><td><span>可以递归创建目录</span></td></tr></tbody></table></figure><blockquote><p><strong><span>新建目录的名称</span></strong><span> 不能与当前目录中 </span><strong><span>已有的目录或文件</span></strong><span> 同名</span></p></blockquote><h3 id='33-rm'><span>3.3 </span><code>rm</code></h3><ul><li><span>删除文件或目录</span></li></ul><blockquote><p><span>使用 </span><code>rm</code><span> 命令要小心，因为文件删除后不能恢复</span></p></blockquote><figure><table><thead><tr><th><span>选项</span></th><th><span>含义</span></th></tr></thead><tbody><tr><td><span>-f</span></td><td><span>强制删除，忽略不存在的文件，无需提示</span></td></tr><tr><td><span>-r</span></td><td><span>递归地删除目录下的内容，</span><strong><span>删除文件夹</span></strong><span> 时必须加此参数</span></td></tr></tbody></table></figure><h2 id='04-拷贝和移动文件'><span>04. 拷贝和移动文件</span></h2><figure><table><thead><tr><th><span>序号</span></th><th><span>命令</span></th><th><span>对应英文</span></th><th><span>作用</span></th></tr></thead><tbody><tr><td><span>01</span></td><td><span>tree [目录名]</span></td><td><span>tree</span></td><td><span>以树状图列出文件目录结构</span></td></tr><tr><td><span>02</span></td><td><span>cp 源文件 目标文件</span></td><td><span>copy</span></td><td><span>复制文件或者目录</span></td></tr><tr><td><span>03</span></td><td><span>mv 源文件 目标文件</span></td><td><span>move</span></td><td><span>移动文件或者目录／文件或者目录重命名</span></td></tr></tbody></table></figure><h3 id='41-tree'><span>4.1 </span><code>tree</code></h3><ul><li><code>tree</code><span> 命令可以以树状图列出文件目录结构</span></li></ul><figure><table><thead><tr><th><span>选项</span></th><th><span>含义</span></th></tr></thead><tbody><tr><td><span>-d</span></td><td><span>只显示目录</span></td></tr></tbody></table></figure><h3 id='42-cp'><span>4.2 </span><code>cp</code></h3><ul><li><code>cp</code><span> 命令的功能是将给出的 </span><strong><span>文件</span></strong><span> 或 </span><strong><span>目录</span></strong><span> 复制到另一个 </span><strong><span>文件</span></strong><span> 或 </span><strong><span>目录</span></strong><span> 中，相当于 </span><strong><span>DOS</span></strong><span> 下的 </span><code>copy</code><span> 命令</span></li></ul><figure><table><thead><tr><th><span>选项</span></th><th><span>含义</span></th></tr></thead><tbody><tr><td><span>-i</span></td><td><span>覆盖文件前提示</span></td></tr><tr><td><span>-r</span></td><td><span>若给出的源文件是目录文件，则 cp 将递归复制该目录下的所有子目录和文件，目标文件必须为一个目录名</span></td></tr></tbody></table></figure><h3 id='43-mv'><span>4.3 </span><code>mv</code></h3><ul><li><code>mv</code><span> 命令可以用来 </span><strong><span>移动</span></strong><span> </span><strong><span>文件</span></strong><span> 或 </span><strong><span>目录</span></strong><span>，也可以给 </span><strong><span>文件或目录重命名</span></strong></li></ul><figure><table><thead><tr><th><span>选项</span></th><th><span>含义</span></th></tr></thead><tbody><tr><td><span>-i</span></td><td><span>覆盖文件前提示</span></td></tr></tbody></table></figure><h2 id='05-查看文件内容'><span>05. 查看文件内容</span></h2><figure><table><thead><tr><th><span>序号</span></th><th><span>命令</span></th><th><span>对应英文</span></th><th><span>作用</span></th></tr></thead><tbody><tr><td><span>01</span></td><td><span>cat 文件名</span></td><td><span>concatenate</span></td><td><span>查看文件内容、创建文件、文件合并、追加文件内容等功能</span></td></tr><tr><td><span>02</span></td><td><span>more 文件名</span></td><td><span>more</span></td><td><span>分屏显示文件内容</span></td></tr><tr><td><span>03</span></td><td><span>grep 搜索文本 文件名</span></td><td><span>grep</span></td><td><span>搜索文本文件内容</span></td></tr></tbody></table></figure><h3 id='51-cat'><span>5.1 </span><code>cat</code></h3><ul><li><code>cat</code><span> 命令可以用来 </span><strong><span>查看文件内容</span></strong><span>、</span><strong><span>创建文件</span></strong><span>、</span><strong><span>文件合并</span></strong><span>、</span><strong><span>追加文件内容</span></strong><span> 等功能</span></li><li><code>cat</code><span> 会一次显示所有的内容，适合 </span><strong><span>查看内容较少</span></strong><span> 的文本文件</span></li></ul><figure><table><thead><tr><th><span>选项</span></th><th><span>含义</span></th></tr></thead><tbody><tr><td><span>-b</span></td><td><span>对非空输出行编号</span></td></tr><tr><td><span>-n</span></td><td><span>对输出的所有行编号</span></td></tr></tbody></table></figure><blockquote><p><span>Linux 中还有一个 </span><code>nl</code><span> 的命令和 </span><code>cat -b</code><span> 的效果等价</span></p></blockquote><h3 id='52-more'><span>5.2 </span><code>more</code></h3><ul><li><code>more</code><span> 命令可以用于分屏显示文件内容，每次只显示一页内容</span></li><li><span>适合于 </span><strong><span>查看内容较多</span></strong><span>的文本文件</span></li></ul><p><span>使用 </span><code>more</code><span> 的操作键：</span></p><figure><table><thead><tr><th><span>操作键</span></th><th><span>功能</span></th></tr></thead><tbody><tr><td><span>空格键</span></td><td><span>显示手册页的下一屏</span></td></tr><tr><td><span>Enter 键</span></td><td><span>一次滚动手册页的一行</span></td></tr><tr><td><span>b</span></td><td><span>回滚一屏</span></td></tr><tr><td><span>f</span></td><td><span>前滚一屏</span></td></tr><tr><td><span>q</span></td><td><span>退出</span></td></tr><tr><td><span>/word</span></td><td><span>搜索 </span><strong><span>word</span></strong><span> 字符串</span></td></tr></tbody></table></figure><h3 id='53-grep'><span>5.3 </span><code>grep</code></h3><ul><li><span>Linux 系统中 </span><code>grep</code><span> 命令是一种强大的文本搜索工具</span></li><li><code>grep</code><span>允许对文本文件进行 </span><strong><span>模式</span></strong><span>查找，所谓模式查找，又被称为正则表达式，在就业班会详细讲解</span></li></ul><figure><table><thead><tr><th><span>选项</span></th><th><span>含义</span></th></tr></thead><tbody><tr><td><span>-n</span></td><td><span>显示匹配行及行号</span></td></tr><tr><td><span>-v</span></td><td><span>显示不包含匹配文本的所有行（相当于求反）</span></td></tr><tr><td><span>-i</span></td><td><span>忽略大小写</span></td></tr></tbody></table></figure><ul><li><span>常用的两种模式查找</span></li></ul><figure><table><thead><tr><th><span>参数</span></th><th><span>含义</span></th></tr></thead><tbody><tr><td><span>^a</span></td><td><span>行首，搜寻以 </span><strong><span>a</span></strong><span> 开头的行</span></td></tr><tr><td><span>ke$</span></td><td><span>行尾，搜寻以 </span><strong><span>ke</span></strong><span> 结束的行</span></td></tr></tbody></table></figure><h2 id='06-其他'><span>06. 其他</span></h2><h3 id='61-echo-文字内容'><span>6.1 </span><code>echo 文字内容</code></h3><ul><li><code>echo</code><span> 会在终端中显示参数指定的文字，通常会和 </span><strong><span>重定向</span></strong><span> 联合使用</span></li></ul><h3 id='62-重定向--和-'><span>6.2 重定向 </span><code>&gt;</code><span> 和 </span><code>&gt;&gt;</code></h3><ul><li><span>Linux 允许将命令执行结果 </span><strong><span>重定向</span></strong><span>到一个 </span><strong><span>文件</span></strong></li><li><span>将本应显示在</span><strong><span>终端上的内容</span></strong><span> </span><strong><span>输出／追加</span></strong><span> 到</span><strong><span>指定文件中</span></strong></li></ul><p><span>其中</span></p><ul><li><code>&gt;</code><span> 表示输出，会覆盖文件原有的内容</span></li><li><code>&gt;&gt;</code><span> 表示追加，会将内容追加到已有文件的末尾</span></li></ul><h3 id='63-管道-'><span>6.3 管道 </span><code>|</code></h3><ul><li><span>Linux 允许将 </span><strong><span>一个命令的输出</span></strong><span> 可以</span><strong><span>通过管道</span></strong><span> 做为 </span><strong><span>另一个命令的输入</span></strong></li><li><span>可以理解现实生活中的管子，管子的一头塞东西进去，另一头取出来，这里 </span><code>|</code><span> 的左右分为两端，左端塞东西（写），右端取东西（读）</span></li></ul><p><span>常用的管道命令有：</span></p><ul><li><code>more</code><span>：分屏显示内容</span></li><li><code>grep</code><span>：在命令执行结果的基础上查询指定的文本</span></li></ul><p>&nbsp;</p><p><span>作业：</span></p><ol start='' ><li><span>使用touch命令任意创建1个文件</span></li><li><span>使用echo命令创建两个文件</span></li><li><span>使用more 和 cat 命令输出文件</span><code>test.txt</code><span>内容</span></li><li><span>复制文件</span><code>test.txt</code><span> ，命名为 </span><code>hello.txt</code></li><li><span>打印当前目录结构</span></li></ol><p>&nbsp;</p><p>&nbsp;</p></div></div>
+</body>
+</html>
