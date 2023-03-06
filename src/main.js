@@ -13,7 +13,6 @@ axios.defaults.baseURL = "http://114.116.11.34:84/"
 // 独立API
 const { message, notification, dialog } = createDiscreteApi(["message", "dialog", "notification"])
 
-
 const app = createApp(App)
 
 // 全局提供属性

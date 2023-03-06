@@ -4,7 +4,7 @@
             <div @click="homePage">首页</div>
             <div>
                 <n-popselect @update:value="searchByCategory" v-model:value="selectedCategory" :options="categortyOptions" trigger="click">
-                    <div>分类<span>{{ categoryName }}</span></div>
+                    <p>分类<span>{{ categoryName }}</span></p>
                 </n-popselect>
             </div>
             <div @click="dashboard">后台</div>
@@ -151,6 +151,7 @@ const dashboard = () => {
 }
 
 .nav {
+    //width: 200px;
     height: 80px;
     display: flex;
     justify-content: center;
@@ -162,16 +163,20 @@ const dashboard = () => {
     background-color: rgb(222, 222, 222);
     div {
         cursor: pointer;
-        margin-right: 15px;
-
+        //margin-right: 15px;
+        padding-left: 20px;
         &:hover {
-            color: #f60;
+            color: rgb(150, 150, 150);
         }
 
         span {
             font-size: 12px;
         }
     }
+  //div:nth-child(2) {
+  //  margin-left: 10px;
+  //}
+
 }
 // .blog-content {
 //     background-color: grey;
