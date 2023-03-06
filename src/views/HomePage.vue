@@ -1,24 +1,25 @@
 <template>
     <div class="container">
         <div class="nav">
-            <div @click="homePage">首页</div>
+            <div @click="homePage">随笔</div>
             <div>
                 <n-popselect @update:value="searchByCategory" v-model:value="selectedCategory" :options="categortyOptions" trigger="click">
                     <p>分类<span>{{ categoryName }}</span></p>
                 </n-popselect>
             </div>
-            <div @click="dashboard">后台</div>
+            <div @click="dashboard">管理文章</div>
         </div>
         <n-divider />
         <n-space class="search">
             <n-input v-model:value="pageInfo.keyword" :style="{ width: '500px' }" placeholder="请输入关键字" />
-            <n-button type="primary" ghost @click="loadBlogs(0)"> 搜索 </n-button>
+            <n-button :loading="searchBtnLoading" type="primary" ghost @click="loadBlogs(0)"> 搜索 </n-button>
         </n-space>
-
-        <div class="blog-content" v-for="(blog, index) in blogListInfo" style="margin-bottom:15px;cursor: pointer;">
-            <n-card class="blog-card" :title="blog.title" @click="toDetail(blog)">
+        <n-skeleton v-if="loading" class="mb15" :width="1200" :height="154" :sharp="false" size="medium" />
+        <n-skeleton v-if="loading" class="mb15" :width="1200" :height="154" :sharp="false" size="medium" />
+        <n-skeleton v-if="loading" class="mb15" :width="1200" :height="154" :sharp="false" size="medium" />
+        <div v-else class="blog-content" v-for="(blog, index) in blogListInfo" style="margin-bottom:15px;cursor: pointer;">
+            <n-card  class="blog-card" :title="blog.title" @click="toDetail(blog)">
                 {{ blog.content }}
-
                 <template #footer>
                     <n-space class="content-time" align="center">
                         <div>发布时间：{{ blog.create_time }}</div>
@@ -55,6 +56,10 @@ const selectedCategory = ref(0)
 const categortyOptions = ref([])
 // 文章列表
 const blogListInfo = ref([])
+// 骨架屏
+const loading = ref(true)
+// 按钮loading
+const searchBtnLoading = ref(false)
 
 // 查询和分页数据
 const pageInfo = reactive({
@@ -88,6 +93,7 @@ const loadBlogs = async (page = 0) => {
         row.create_time = `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`
     }
     blogListInfo.value = temp_rows;
+    loading.value = false
     pageInfo.count = res.data.data.count;
     //计算分页大小
     pageInfo.pageCount = parseInt(pageInfo.count / pageInfo.pageSize) + (pageInfo.count % pageInfo.pageSize > 0 ? 1 : 0)
@@ -193,4 +199,9 @@ const dashboard = () => {
 .content-time {
     color: rgb(116, 111, 111);
 }
+.mb15 {
+  margin-bottom: 15px;
+  border-radius: 8px;
+}
+
 </style>
